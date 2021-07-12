@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .jump{font-size: 24px;
+        font-weight: 800;
+        position: absolute;
+        top: 0;
+        opacity: 1;
+        transition: all 1s;}
+    </style>
+</head>
+<body>
+    <!-- <div class="jump">富强</div> -->
+</body>
+<script>
+    var str = ['富强','民主','文明','和谐','自由','平等','公正','法制','爱国','敬业','诚信','友善']
+    var colorstr = '24680ace13579bdf';
+    
+    window.onmousemove = function(e){
+        var div = document.createElement('div');
+        var num = Math.floor(Math.random()*str.length);
+        var x = e.pageX;
+        var y = e.pageY;
+        
+        // console.log(str[num],x,y);
+        div.className = 'jump';
+        div.innerHTML = str[num];
+        div.style.left = x + 'px';
+        div.style.top = y + 'px';
+        div.style.color = '#' + getColor();
+
+        document.body.appendChild(div);
+
+        setTimeout(function(){
+            div.style.top = y - 50 + 'px';
+            // console.log(y);
+            div.style.opacity = 0;
+        },100)
+        setTimeout(function(){
+            div.remove();
+        },1100)
+    }
+
+    function getColor(){
+        var color = '';
+        for(var i=0; i<6; i++){
+            var temp = Math.floor(Math.random()*16);
+            color += colorstr[temp];
+        }
+        return color;
+    }
+</script>
+</html>
